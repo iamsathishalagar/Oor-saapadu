@@ -2024,66 +2024,8 @@ html {
   flex: 1;
 }
 
-/* RESPONSIVE DESIGN */
+/* RESPONSIVE TRACK ORDER */
 @media (max-width: 768px) {
-  .nav-container {
-    flex-wrap: wrap;
-    justify-content: space-between;
-    height: auto;
-    padding: 10px 20px;
-  }
-
-  .nav-menu {
-    display: none;
-  }
-
-  .hero-content h1 {
-    font-size: 32px;
-  }
-
-  .hero-subtitle {
-    font-size: 15px;
-  }
-
-  .cta-buttons {
-    flex-direction: column;
-  }
-
-  .hotels-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .menu-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .cart-sidebar {
-    width: 100%;
-    right: -100%;
-  }
-
-  .filter-container {
-    grid-template-columns: 1fr;
-  }
-
-  .modal-content {
-    width: 95%;
-    max-height: 90vh;
-    padding: 20px;
-  }
-
-  .donate-content {
-    grid-template-columns: 1fr;
-  }
-
-  .about-content {
-    grid-template-columns: 1fr;
-  }
-
-  .mission-cards {
-    grid-template-columns: 1fr;
-  }
-
   .track-header {
     grid-template-columns: 1fr;
     gap: 12px;
@@ -2118,29 +2060,16 @@ html {
 }
 
 @media (max-width: 480px) {
-  .hero-content h1 {
-    font-size: 24px;
-  }
-
-  .logo-text {
-    font-size: 18px;
-  }
-
-  .tagline {
-    display: none;
-  }
-
-  .hotels-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .search-box {
+  .track-search {
     flex-direction: column;
   }
 
-  .search-box input,
-  .search-btn {
-    border-radius: 8px;
+  .progress-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .track-body {
+    padding: 20px;
   }
 
   .step-circle {
