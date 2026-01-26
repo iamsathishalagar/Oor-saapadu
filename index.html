@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oor Saapadu - Local Food & Community Donation</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <span class="logo-icon">🍲</span>
+        <div>
+        <span class="logo-text">Oor Saapadu</span>
+          <span class="tagline">Namma Ooru,Namma Order uhh..!!!</span>
+        </div>
+      </div>
+      <div class="nav-menu">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#hotels" class="nav-link">Local Hotels</a>
+        <a href="#donate" class="nav-link">Donate Food</a>
+        <a href="#track" class="nav-link">Track Orders</a>
+        <a href="#orders" class="nav-link">My Orders</a>
+        <a href="#favorites" class="nav-link" onclick="displayFavorites()">⭐ Favorites</a>
+      </div>
+      <div class="nav-right">
+        <div class="loyalty-display">💎 Points: <span id="loyaltyPoints">0</span></div>
+        <button class="notification-btn" onclick="showNotifications()">
+          🔔 <span id="notificationBadge" class="notification-badge" style="display: none;">0</span>
+        </button>
+        <button class="cart-btn" onclick="toggleCart()">
+          🛒 Cart <span class="cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section id="home" class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Oor Saapadu - Supporting Local Hotels, Feeding Communities</h1>
+      <p class="hero-subtitle">Find affordable food from nearby mess & local hotels. Order fresh • Support local • Help communities</p>
+      <div class="cta-buttons">
+        <button class="btn btn-primary" onclick="scrollToSection('hotels')">Find Hotels Near You</button>
+        <button class="btn btn-secondary" onclick="scrollToSection('donate')">Donate Meals to Orphanages</button>
+      </div>
+      <div class="search-box">
+        <input 
+          type="text" 
+          id="searchInput" 
+          placeholder="Search by area, hotel name, or food..." 
+          onkeyup="searchHotels()"
+        />
+        <button class="search-btn" onclick="searchHotels()">🔍 Search</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="about-section">
+    <div class="about-container">
+      <h2>About Oor Saapadu</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <h3>Why Oor Saapadu?</h3>
+          <p>
+            In Tamil Nadu, many people depend on local hotels and small mess shops for their daily food because they are <strong>affordable and easily available</strong>. Students, working people, and low- and middle-income families usually prefer simple systems that save time and money.
+          </p>
+          <p>
+            However, finding nearby hotels, checking prices, booking tables, or choosing self-pick-up is still difficult for many people.
+          </p>
+        </div>
+        <div class="about-mission">
+          <h3>Our Mission</h3>
+          <div class="mission-cards">
+            <div class="mission-card">
+              <span class="mission-icon">🏪</span>
+              <h4>Find Local Hotels</h4>
+              <p>Discover nearby mess & hotels easily with ratings and pricing</p>
+            </div>
+            <div class="mission-card">
+              <span class="mission-icon">💰</span>
+              <h4>Affordable Food</h4>
+              <p>Compare prices and save money on daily meals</p>
+            </div>
+            <div class="mission-card">
+              <span class="mission-icon">🚚</span>
+              <h4>Quick Service</h4>
+              <p>Order online or book table for dine-in</p>
+            </div>
+            <div class="mission-card">
+              <span class="mission-icon">❤️</span>
+              <h4>Community Support</h4>
+              <p>Donate meals to orphanages with WhatsApp proof</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTER & SORT SECTION -->
+  <section class="filter-section">
+    <div class="filter-container">
+      <div class="filter-group">
+        <label for="areaFilter">📍 Area/Location</label>
+        <select id="areaFilter" onchange="filterHotels()">
+          <option value="">All Areas</option>
+          <option value="Anna Nagar">Anna Nagar</option>
+          <option value="Triplicane">Triplicane</option>
+          <option value="Saidapet">Saidapet</option>
+          <option value="Guindy">Guindy</option>
+          <option value="T.Nagar">T.Nagar</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="typeFilter">🍛 Cuisine Type</label>
+        <select id="typeFilter" onchange="filterHotels()">
+          <option value="">All Types</option>
+          <option value="South Indian">South Indian</option>
+          <option value="North Indian">North Indian</option>
+          <option value="Chinese">Chinese</option>
+          <option value="Biryani">Biryani</option>
+          <option value="Fast Food">Fast Food</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="sortFilter">⭐ Sort By</label>
+        <select id="sortFilter" onchange="sortHotels()">
+          <option value="rating">Highest Rated</option>
+          <option value="price">Lowest Price</option>
+          <option value="distance">Nearest Location</option>
+          <option value="delivery">Fastest Delivery</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCAL HOTELS GRID -->
+  <section id="hotels" class="hotels-section">
+    <h2>🏪 Local Hotels & Mess Shops</h2>
+    <p class="section-subtitle">Affordable, fresh food from trusted local vendors</p>
+    <div id="hotelsList" class="hotels-grid"></div>
+  </section>
+
+  <!-- HOTEL DETAIL MODAL -->
+  <div id="hotelModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeHotelModal()">&times;</span>
+      <div class="modal-header">
+        <div id="modalHotelImage" class="modal-hotel-image"></div>
+        <div class="hotel-header-info">
+          <h2 id="modalHotelName"></h2>
+          <p id="modalHotelInfo"></p>
+          <div id="hotelRating" class="hotel-rating-detail"></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="menu-tabs">
+          <button class="tab-btn active" onclick="showMenuCategory('breakfast')">Breakfast</button>
+          <button class="tab-btn" onclick="showMenuCategory('lunch')">Lunch & Meals</button>
+          <button class="tab-btn" onclick="showMenuCategory('snacks')">Snacks</button>
+          <button class="tab-btn" onclick="showMenuCategory('dinner')">Dinner</button>
+        </div>
+        <div id="menuList" class="menu-grid"></div>
+        
+        <!-- Reviews Section -->
+        <div class="reviews-section" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
+          <h3 style="margin-bottom: 15px;">⭐ Customer Reviews</h3>
+          <button class="btn-add" onclick="submitHotelReview(selectedHotel.id)" style="margin-bottom: 15px; width: 100%;">Write a Review</button>
+          <div id="hotelReviewsList" class="reviews-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOPPING CART SIDEBAR -->
+  <div id="cartSidebar" class="cart-sidebar">
+    <div class="cart-header">
+      <h3>🛒 Your Cart</h3>
+      <span class="close-cart" onclick="toggleCart()">✕</span>
+    </div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-summary">
+        <div class="summary-row">
+          <span>Subtotal:</span>
+          <span id="subtotal">₹0</span>
+        </div>
+        <div class="summary-row">
+          <span>Delivery Fee:</span>
+          <span id="deliveryFee">₹0</span>
+        </div>
+        <div class="summary-row total">
+          <strong>Total:</strong>
+          <span id="total">₹0</span>
+        </div>
+      </div>
+      <button class="checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
+      <button class="clear-cart-btn" onclick="clearCart()">Clear Cart</button>
+    </div>
+  </div>
+
+  <!-- TRACK ORDER SECTION -->
+  <section id="track" class="track-section">
+    <div class="track-container">
+      <h2>📍 Track Your Order</h2>
+      <p class="section-subtitle">Real-time order tracking with live updates</p>
+      
+      <div class="track-search">
+        <input 
+          type="text" 
+          id="trackOrderId" 
+          placeholder="Enter Order ID (e.g., ORD-1234567890)" 
+          onkeyup="searchTrackOrder()"
+        />
+        <button class="btn btn-primary" onclick="trackOrder()">Search Order</button>
+      </div>
+
+      <div id="trackResult" class="track-result"></div>
+
+      <div id="activeOrdersList" class="active-orders-list"></div>
+    </div>
+  </section>
+
+  <!-- DONATION SECTION -->
+  <section id="donate" class="donate-section">
+    <div class="donate-container">
+      <div class="donate-header">
+        <h2>❤️ Donate Meals to Orphanages</h2>
+        <p>Order fresh food from local hotels and donate to nearby orphanages with WhatsApp proof</p>
+      </div>
+
+      <div class="donate-content">
+        <div class="donate-info">
+          <div class="info-card">
+            <span class="info-icon">1️⃣</span>
+            <h4>Choose Hotel & Food</h4>
+            <p>Select from nearby local hotels and pick fresh food items</p>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">2️⃣</span>
+            <h4>Select Orphanage</h4>
+            <p>Choose an orphanage near your area that needs support</p>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">3️⃣</span>
+            <h4>WhatsApp Proof</h4>
+            <p>Get instant WhatsApp confirmation with donation details</p>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">4️⃣</span>
+            <h4>Make Impact</h4>
+            <p>Help orphanages while supporting local businesses</p>
+          </div>
+        </div>
+
+        <form class="donate-form" onsubmit="submitDonation(event)">
+          <h3>Create a Donation</h3>
+          
+          <div class="form-group">
+            <label>Select Local Hotel</label>
+            <select id="donateHotel" required onchange="loadDonationMenu()">
+              <option value="">-- Choose a hotel --</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Select Orphanage</label>
+            <select id="donateOrphanage" required>
+              <option value="">-- Choose an orphanage --</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Food Item & Quantity</label>
+            <div class="donation-items" id="donationItems">
+              <p class="muted">Select a hotel first to see menu items</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Number of Meals</label>
+            <input type="number" id="donateQty" min="1" max="100" value="10" required />
+          </div>
+
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="donateName" placeholder="Your full name" required />
+          </div>
+
+          <div class="form-group">
+            <label>Your WhatsApp Number</label>
+            <input type="tel" id="donatePhone" placeholder="Your WhatsApp number" required />
+          </div>
+
+          <div class="donation-summary">
+            <p>Total Meals: <strong id="donationMealCount">0</strong></p>
+            <p>Estimated Cost: <strong>₹<span id="donationCost">0</span></strong></p>
+          </div>
+
+          <button type="submit" class="btn btn-success">Generate WhatsApp Donation Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHECKOUT MODAL -->
+  <div id="checkoutModal" class="modal">
+    <div class="modal-content checkout-modal">
+      <span class="close-btn" onclick="closeCheckoutModal()">&times;</span>
+      <h2>Complete Your Order</h2>
+      <form id="checkoutForm" onsubmit="placeOrder(event)">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="fullName" required placeholder="Enter your name" />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="email" required placeholder="Enter your email" />
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" id="phone" required placeholder="Enter your phone number" />
+        </div>
+        <div class="form-group">
+          <label>Delivery Address</label>
+          <textarea id="address" required placeholder="Enter your delivery address"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Payment Method</label>
+          <select id="paymentMethod" required>
+            <option value="card">Credit/Debit Card</option>
+            <option value="upi">UPI</option>
+            <option value="cash">Cash on Delivery</option>
+          </select>
+        </div>
+        <div class="promo-section">
+          <label>Have a promo code?</label>
+          <div class="promo-input-group">
+            <button type="button" class="btn-apply-promo" onclick="applyPromoCode()">Apply Code</button>
+            <button type="button" class="btn-remove-promo" id="removePromoBtn" onclick="removePromoCode()" style="display: none;">Remove</button>
+          </div>
+          <div id="appliedPromoDisplay" class="applied-promo" style="display: none;"></div>
+        </div>
+        <div class="checkout-total">
+          <div class="total-row">
+            <span>Subtotal:</span>
+            <span>₹<span id="checkoutSubtotal">0</span></span>
+          </div>
+          <div class="total-row" id="promoDiscountRow" style="display: none;">
+            <span>Promo Discount:</span>
+            <span>-₹<span id="promoDiscount">0</span></span>
+          </div>
+          <div class="total-row total">
+            <strong>Order Total: ₹<span id="checkoutTotal">0</span></strong>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Place Order</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ORDER CONFIRMATION MODAL -->
+  <div id="confirmationModal" class="modal">
+    <div class="modal-content confirmation-modal">
+      <div class="confirmation-icon">✅</div>
+      <h2>Order Placed Successfully!</h2>
+      <p id="confirmationMessage"></p>
+      <div class="order-details" id="orderDetails"></div>
+      <div class="confirmation-actions">
+        <button class="btn btn-primary" onclick="closeConfirmationModal()">Continue Shopping</button>
+        <button class="btn btn-secondary" onclick="goToTrackOrder()">Track Your Order</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DONATION CONFIRMATION MODAL -->
+  <div id="donationConfirmationModal" class="modal">
+    <div class="modal-content confirmation-modal">
+      <div class="confirmation-icon">❤️</div>
+      <h2>Donation Message Ready!</h2>
+      <p id="donationConfirmMessage"></p>
+      <div id="donationMessageBox" class="donation-message-box"></div>
+      <div class="button-group">
+        <a id="whatsappLink" href="#" class="btn btn-success" target="_blank">Send on WhatsApp</a>
+        <button class="btn btn-secondary" onclick="closeDonationConfirmation()">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MY ORDERS SECTION -->
+  <section id="orders" class="orders-section">
+    <h2>📋 My Orders</h2>
+    <div id="ordersList" class="orders-list"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Oor Saapadu</h4>
+        <p>Connecting local hotels with communities through affordable food and charitable giving</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#hotels">Local Hotels</a></li>
+          <li><a href="#track">Track Order</a></li>
+          <li><a href="#donate">Donate</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <p>Email: info@oorsaapadu.com</p>
+        <p>Phone: +91 XXXX XXXX XX</p>
+      </div>
+    </div>
+    <p class="footer-bottom">&copy; 2024 Oor Saapadu (Sathish&Aparna). Supporting local, feeding communities, helping together.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
