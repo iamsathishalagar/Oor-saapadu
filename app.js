@@ -1,164 +1,87 @@
-// Hotel Data for Tamil Nadu
-let hotels = [
-  {
-    id: 1,
-    name: "Annanagar Mess",
-    area: "Anna Nagar",
-    location: "Anna Nagar, Chennai",
-    distance: 0.8,
-    cuisine: "South Indian",
-    rating: 4.5,
-    reviews: 248,
-    deliveryTime: "20-30 min",
-    deliveryFee: 20,
-    minPrice: 40,
-    icon: "",
-    menu: {
-      breakfast: [
-        { id: 1, name: "Idly & Sambar", price: 25, desc: "3 idlies with sambar" },
-        { id: 2, name: "Dosa", price: 35, desc: "Crispy dosa with chutney" },
-        { id: 3, name: "Puri & Curry", price: 40, desc: "Hot puri with curry" }
-      ],
-      lunch: [
-        { id: 4, name: "Mini Meals", price: 80, desc: "Rice, sambar, curry" },
-        { id: 5, name: "Curd Rice", price: 50, desc: "Fresh curd rice" },
-        { id: 6, name: "Tamarind Rice", price: 45, desc: "Tangy tamarind rice" }
-      ],
-      snacks: [
-        { id: 7, name: "Murukku", price: 20, desc: "Crispy murukku" },
-        { id: 8, name: "Chikali", price: 15, desc: "Sweet chikali" }
-      ],
-      dinner: [
-        { id: 9, name: "Roti & Curry", price: 60, desc: "2 rotis with curry" },
-        { id: 10, name: "Rice Meals", price: 80, desc: "Evening special meals" }
-      ]
-    }
-  },
-  {
-    id: 2,
-    name: "Marina Biryani House",
-    area: "Triplicane",
-    location: "Triplicane, Chennai",
-    distance: 1.2,
-    cuisine: "Biryani",
-    rating: 4.7,
-    reviews: 512,
-    deliveryTime: "30-40 min",
-    deliveryFee: 40,
-    minPrice: 90,
-    icon: "🍛",
-    menu: {
-      breakfast: [
-        { id: 11, name: "Parotta & Salna", price: 45, desc: "Soft parotta" },
-        { id: 12, name: "Poori & Curry", price: 50, desc: "Hot poori" }
-      ],
-      lunch: [
-        { id: 13, name: "Chicken Biryani", price: 150, desc: "Fragrant biryani" },
-        { id: 14, name: "Veg Biryani", price: 110, desc: "Mixed vegetables" },
-        { id: 15, name: "Mutton Biryani", price: 180, desc: "Premium mutton" }
-      ],
-      snacks: [
-        { id: 16, name: "Biryani Bits", price: 60, desc: "Mini biryani" }
-      ],
-      dinner: [
-        { id: 17, name: "Fish Fry", price: 120, desc: "Crispy fish" },
-        { id: 18, name: "Prawn Biryani", price: 200, desc: "Seafood special" }
-      ]
-    }
-  },
-  {
-    id: 3,
-    name: "Kovai Canteen",
-    area: "Saidapet",
-    location: "Saidapet, Chennai",
-    distance: 0.5,
-    cuisine: "South Indian",
-    rating: 4.4,
-    reviews: 189,
-    deliveryTime: "15-25 min",
-    deliveryFee: 15,
-    minPrice: 35,
-    icon: "🥗",
-    menu: {
-      breakfast: [
-        { id: 19, name: "Podi Dosa", price: 40, desc: "Spicy podi dosa" },
-        { id: 20, name: "Masala Dosa", price: 50, desc: "Masala dosa" }
-      ],
-      lunch: [
-        { id: 21, name: "Veg Meals", price: 85, desc: "Complete veg meals" },
-        { id: 22, name: "Lemon Rice", price: 40, desc: "Tangy lemon rice" },
-        { id: 23, name: "Coconut Rice", price: 45, desc: "Coconut flavored rice" }
-      ],
-      snacks: [
-        { id: 24, name: "Vadai", price: 15, desc: "Crispy vadai" },
-        { id: 25, name: "Chow Mein", price: 50, desc: "Fried chow mein" }
-      ],
-      dinner: [
-        { id: 26, name: "Chapathi Meals", price: 75, desc: "Chapathi with curry" }
-      ]
-    }
-  },
-  {
-    id: 4,
-    name: "Saravana Bhavan",
-    area: "T.Nagar",
-    location: "T.Nagar, Chennai",
-    distance: 1.5,
-    cuisine: "South Indian",
-    rating: 4.6,
-    reviews: 420,
-    deliveryTime: "25-35 min",
-    deliveryFee: 30,
-    minPrice: 50,
-    icon: "🍲",
-    menu: {
-      breakfast: [
-        { id: 27, name: "Appam & Curry", price: 35, desc: "Soft appam" },
-        { id: 28, name: "Uttapam", price: 40, desc: "Thick savory pancake" }
-      ],
-      lunch: [
-        { id: 29, name: "Full Meals", price: 100, desc: "Complete meals" },
-        { id: 30, name: "Sambar Rice", price: 45, desc: "Rice with sambar" }
-      ],
-      snacks: [
-        { id: 31, name: "Bonda", price: 20, desc: "Hot bonda" }
-      ],
-      dinner: [
-        { id: 32, name: "Dosa & Curry", price: 60, desc: "Dinner special" }
-      ]
-    }
-  },
-  {
-    id: 5,
-    name: "Guindy Mess",
-    area: "Guindy",
-    location: "Guindy, Chennai",
-    distance: 2.0,
-    cuisine: "North Indian",
-    rating: 4.3,
-    reviews: 156,
-    deliveryTime: "30-45 min",
-    deliveryFee: 35,
-    minPrice: 60,
-    icon: "🥘",
-    menu: {
-      breakfast: [
-        { id: 33, name: "Chole Bhature", price: 60, desc: "North Indian" },
-        { id: 34, name: "Aloo Paratha", price: 50, desc: "Stuffed paratha" }
-      ],
-      lunch: [
-        { id: 35, name: "Butter Chicken", price: 150, desc: "Creamy butter chicken" },
-        { id: 36, name: "Dal Makhani", price: 120, desc: "Creamy dal" }
-      ],
-      snacks: [
-        { id: 37, name: "Samosa", price: 20, desc: "Crispy samosa" }
-      ],
-      dinner: [
-        { id: 38, name: "Paneer Tikka", price: 130, desc: "Grilled paneer" }
-      ]
-    }
+// ====== AUTH MODAL LOGIC ======
+function openAuthModal() {
+  document.getElementById('authModal').style.display = 'block';
+  showAuthTab('login');
+}
+function closeAuthModal() {
+  document.getElementById('authModal').style.display = 'none';
+}
+function showAuthTab(tab) {
+  document.getElementById('loginTab').classList.toggle('active', tab === 'login');
+  document.getElementById('signupTab').classList.toggle('active', tab === 'signup');
+  document.getElementById('loginFormContainer').style.display = tab === 'login' ? 'block' : 'none';
+  document.getElementById('signupFormContainer').style.display = tab === 'signup' ? 'block' : 'none';
+}
+
+// ====== USER AUTH LOGIC ======
+function handleSignup(e) {
+  e.preventDefault();
+  const name = document.getElementById('signupName').value.trim();
+  const email = document.getElementById('signupEmail').value.trim().toLowerCase();
+  const phone = document.getElementById('signupPhone').value.trim();
+  const password = document.getElementById('signupPassword').value;
+  if (!name || !email || !phone || !password) return alert('Please fill all fields.');
+  let users = JSON.parse(localStorage.getItem('users')) || [];
+  if (users.some(u => u.email === email)) return alert('Email already registered. Please login.');
+  const newUser = { name, email, phone, password };
+  users.push(newUser);
+  localStorage.setItem('users', JSON.stringify(users));
+  localStorage.setItem('currentUser', JSON.stringify(newUser));
+  // Also push to admin users (for admin view)
+  let adminUsers = JSON.parse(localStorage.getItem('adminUsers')) || [];
+  adminUsers.push(newUser);
+  localStorage.setItem('adminUsers', JSON.stringify(adminUsers));
+  alert('Signup successful! You are now logged in.');
+  closeAuthModal();
+  updateUserUI();
+}
+
+function handleLogin(e) {
+  e.preventDefault();
+  const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+  const password = document.getElementById('loginPassword').value;
+  let users = JSON.parse(localStorage.getItem('users')) || [];
+  const user = users.find(u => u.email === email && u.password === password);
+  if (!user) return alert('Invalid email or password.');
+  localStorage.setItem('currentUser', JSON.stringify(user));
+  alert('Login successful!');
+  closeAuthModal();
+  updateUserUI();
+}
+
+function updateUserUI() {
+  // Example: show user name in nav or show logout button
+  const nav = document.querySelector('.nav-right');
+  if (!nav) return;
+  let user = null;
+  try { user = JSON.parse(localStorage.getItem('currentUser')); } catch {}
+  let userEl = document.getElementById('userNavInfo');
+  if (!userEl) {
+    userEl = document.createElement('div');
+    userEl.id = 'userNavInfo';
+    userEl.style.marginLeft = '10px';
+    nav.appendChild(userEl);
   }
-];
+  if (user) {
+    userEl.innerHTML = `<span style="font-weight:600;">👤 ${user.name}</span> <button onclick="logoutUser()" class="btn btn-secondary" style="margin-left:8px;">Logout</button>`;
+  } else {
+    userEl.innerHTML = `<button onclick="openAuthModal()" class="btn btn-primary">Login / Sign Up</button>`;
+  }
+}
+
+function logoutUser() {
+  localStorage.removeItem('currentUser');
+  updateUserUI();
+}
+
+// Show login/signup on first visit if not logged in
+document.addEventListener('DOMContentLoaded', () => {
+  updateUserUI();
+  if (!localStorage.getItem('currentUser')) {
+    setTimeout(openAuthModal, 800);
+  }
+});
+let hotels = [];
 
 // Orphanages Data
 const orphanages = [
@@ -225,31 +148,27 @@ document.addEventListener('DOMContentLoaded', () => {
   loadReviewsFromAdmin();
   loadUserProfile();
   loadFavorites();
-  loadLoyaltyPoints();
   displayHotels(hotels);
   updateCartUI();
   displayOrders();
   populateDonationSelects();
-  initializeTracking();
+  displayActiveOrders();
   displayQuickReorderSection();
   updateNotifications();
 
-  // Listen for hotel updates from admin panel
-  window.addEventListener('hotelsUpdated', () => {
-    loadHotelsFromAdmin();
-    loadReviewsFromAdmin();
-    displayHotels(hotels);
-    populateDonationSelects();
+  // Listen for storage changes (updates from admin panel in another tab)
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'adminHotels' || e.key === 'adminReviews') {
+      loadHotelsFromAdmin();
+      loadReviewsFromAdmin();
+      displayHotels(hotels);
+      populateDonationSelects();
+    }
   });
 
   // Refresh active orders every 10 seconds
   setInterval(displayActiveOrders, 10000);
 });
-
-// Check for hotel updates periodically (every 5 seconds)
-setInterval(() => {
-  loadHotelsFromAdmin();
-}, 5000);
 
 // Scroll to Section
 function scrollToSection(sectionId) {
@@ -382,7 +301,7 @@ function updateCartUI() {
 
   const cartItemsContainer = document.getElementById('cartItems');
   const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  const deliveryFee = cart.length > 0 ? 0 : 0; // Will be set dynamically
+  const deliveryFee = 0;
   const promoDiscount = calculatePromoDiscount(subtotal);
   const total = Math.max(0, subtotal + deliveryFee - promoDiscount);
 
@@ -480,6 +399,7 @@ function closeCheckoutModal() {
 
 // Place Order
 function placeOrder(event) {
+  alert('Your order has been placed successfully! Thank you for supporting local hotels and helping our community!');//edidited//
   event.preventDefault();
 
   const fullName = document.getElementById('fullName').value;
@@ -489,7 +409,7 @@ function placeOrder(event) {
   const paymentMethod = document.getElementById('paymentMethod').value;
 
   const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  const deliveryFee = cart.length > 0 ? 0 : 0;
+  const deliveryFee = 0;
   const promoDiscount = calculatePromoDiscount(subtotal);
   const total = Math.max(0, subtotal + deliveryFee - promoDiscount);
 
@@ -681,11 +601,13 @@ function populateDonationSelects() {
   const hotelSel = document.getElementById('donateHotel');
   const orphanSel = document.getElementById('donateOrphanage');
 
-  hotelSel.innerHTML += hotels
+  if (!hotelSel || !orphanSel) return;
+
+  hotelSel.innerHTML = '<option value="">Select a Hotel</option>' + hotels
     .map(h => `<option value="${h.id}">${h.name} (${h.area})</option>`)
     .join('');
 
-  orphanSel.innerHTML += orphanages
+  orphanSel.innerHTML = '<option value="">Select an Orphanage</option>' + orphanages
     .map(o => `<option value="${o.id}">${o.name} (${o.area})</option>`)
     .join('');
 }
@@ -1174,31 +1096,6 @@ function displayFavorites() {
   displayHotels(favHotels);
 }
 
-// ====== LOYALTY POINTS ======
-function loadLoyaltyPoints() {
-  try {
-    loyaltyPoints = parseInt(localStorage.getItem('loyaltyPoints')) || 0;
-  } catch (e) {
-    loyaltyPoints = 0;
-  }
-}
-
-function saveLoyaltyPoints() {
-  localStorage.setItem('loyaltyPoints', loyaltyPoints);
-}
-
-function addLoyaltyPoints(amount) {
-  loyaltyPoints += amount;
-  saveLoyaltyPoints();
-  updateLoyaltyDisplay();
-}
-
-function updateLoyaltyDisplay() {
-  const loyaltyEl = document.getElementById('loyaltyPoints');
-  if (loyaltyEl) {
-    loyaltyEl.textContent = loyaltyPoints;
-  }
-}
 
 // ====== PROMO CODES ======
 function applyPromoCode() {
@@ -1282,20 +1179,11 @@ function quickReorder(orderId) {
   const order = orders.find(o => o.orderId === orderId);
   if (!order) return;
 
-  cart = [];
-  order.items.forEach(item => {
-    cart.push({
-      hotelId: order.hotelName,
-      itemId: item.id,
-      itemName: item.name,
-      price: item.price,
-      quantity: item.quantity
-    });
-  });
+  cart = [...order.items];
 
   updateCartUI();
   alert('Items added to cart! Ready to checkout?');
-  document.querySelector('.cart-sidebar').classList.add('active');
+  document.getElementById('cartSidebar').classList.add('active');
 }
 
 // ====== NOTIFICATIONS ======
@@ -1326,7 +1214,3 @@ function showNotifications() {
   alert(notifText);
 }
 
-// Initialize track orders on page load
-function initializeTracking() {
-  displayActiveOrders();
-}
